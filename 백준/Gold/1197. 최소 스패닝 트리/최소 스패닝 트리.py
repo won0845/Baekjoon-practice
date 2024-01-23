@@ -1,5 +1,12 @@
+import sys
+
+sys.setrecursionlimit(10 ** 6)
+input = sys.stdin.readline
+
 V, E = map(int, input().split())
 tree = []
+
+root = list(range(V + 1))
 
 for _ in range(E):
     tree.append(list(map(int, input().split())))
@@ -24,9 +31,9 @@ def union(a, b):
 tree.sort(key=lambda x: x[2])
 
 ans = 0
+
 for a, b, c in tree:
     if find(a) != find(b):
         union(a, b)
         ans += c
-
 print(ans)

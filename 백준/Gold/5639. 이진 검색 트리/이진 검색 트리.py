@@ -1,36 +1,32 @@
 import sys
-from collections import deque
 
-sys.setrecursionlimit(10 ** 9)
+sys.setrecursionlimit(10 ** 6)
 
 input = sys.stdin.readline
 
-preorder = []
+prest = []
 
 while True:
     try:
-        preorder.append(int(input()))
+        prest.append(int(input()))
     except:
         break
 
 
-def postorder(root_idx, end_idx):
+def preorder(root_idx, end_idx):
     if root_idx > end_idx:
         return
 
-    global preorder
-
-    right_start = end_idx + 1
+    right_idx = end_idx + 1
 
     for i in range(root_idx + 1, end_idx + 1):
-        if preorder[root_idx] < preorder[i]:
-            right_start = i
+        if prest[root_idx] < prest[i]:
+            right_idx = i
             break
-    postorder(root_idx + 1, right_start - 1)
 
-    postorder(right_start, end_idx)
+    preorder(root_idx + 1, right_idx - 1)
+    preorder(right_idx, end_idx)
+    print(prest[root_idx])
 
-    print(preorder[root_idx])
 
-
-postorder(0, len(preorder) - 1)
+preorder(0, len(prest) - 1)

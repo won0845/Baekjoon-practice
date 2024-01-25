@@ -1,46 +1,45 @@
 import sys
-from collections import deque
 
-input = sys.stdin.readline
+sys.setrecursionlimit(10 ** 6)
 
 N = int(input())
-lst = []
-answer = []
 
-for _ in range(N):
-    lst.append(list(map(int, input().strip())))
+adj = [0 for _ in range(N)]
+
+for i in range(N):
+    adj[i] = str(input())
+
+dy = (0, 1, 0, -1)
+dx = (1, 0, -1, 0)
 
 
-def bfs(x, y):
-    q = deque([(x, y)])
-    dx = [1, -1, 0, 0]
-    dy = [0, 0, 1, -1]
-    count = 0
-    while q:
-        x, y = q.popleft()
-        for i in range(4):
-            nx = x + dx[i]
-            ny = y + dy[i]
-            if nx < 0 or ny < 0 or nx >= N or ny >= N:
-                continue
-            if lst[nx][ny] == 1:
-                count += 1
-                lst[nx][ny] = 0
-                q.append((nx, ny))
+def is_valid_coord(y, x):
+    return 0 <= y < N and 0 <= x < N
+
+
+chk = [[False] * N for _ in range(N)]
+
+
+def dfs(y, x):
+    chk[y][x] = True
+    count = 1
+    for i in range(4):
+        ny = y + dy[i]
+        nx = x + dx[i]
+        if is_valid_coord(ny, nx) and adj[ny][nx] == "1" and not chk[ny][nx]:
+            count += dfs(ny, nx)
     return count
 
+danji_counter = 0
+house_per_danji = []
 
 for i in range(N):
     for j in range(N):
-        if lst[i][j] == 0:
-            continue
-        answer.append(bfs(i, j))
+        if adj[i][j] == "1" and not chk[i][j]:
+            house_per_danji.append(dfs(i, j))
+            danji_counter += 1
 
-answer.sort()
-
-for i in range(answer.count(0)):
-    answer[i] = 1
-
-print(len(answer))
-for i in answer:
-    print(i)
+print(danji_counter)
+house_per_danji.sort()
+for danji in house_per_danji:
+    print(danji)

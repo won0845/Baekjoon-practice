@@ -13,5 +13,4 @@ for i in range(1, N):
         if arr[i] > arr[j]:
             dp[i] = max(dp[i], dp[j] + 1)
 
-# dp 배열 중 최대값을 찾아 출력
 print(max(dp))

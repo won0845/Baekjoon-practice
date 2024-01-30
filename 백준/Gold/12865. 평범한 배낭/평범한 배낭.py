@@ -2,20 +2,19 @@ import sys
 
 input = sys.stdin.readline
 
+item = [[0, 0]]
 N, K = map(int, input().split())
+knapsack = [[0 for _ in range(K + 1)] for _ in range(N + 1)]
 
-item = []
 for _ in range(N):
-    item.append(list(map(int, input().split())))
-
-dp = [[0 for _ in range(K + 1)] for _ in range(N + 1)]
+    A, B = map(int, input().split())
+    item.append([A, B])
 
 for i in range(1, N + 1):
     for j in range(1, K + 1):
-        if item[i-1][0] <= j:
-            dp[i][j] = max(item[i-1][1] + dp[i - 1][j - item[i-1][0]], dp[i - 1][
-                j])
+        if j < item[i][0]:
+            knapsack[i][j] = knapsack[i - 1][j]
         else:
-            dp[i][j] = dp[i-1][j]
+            knapsack[i][j] = max(item[i][1] + knapsack[i - 1][j - item[i][0]], knapsack[i - 1][j])
 
-print(dp[N][K])
+print(knapsack[N][K])

@@ -8,7 +8,6 @@ dp = [[0 for _ in range(N)] for _ in range(N)]
 dp[0][0] = 1
 
 board = []
-count = 0
 for _ in range(N):
     board.append(list(map(int, input().split())))
 

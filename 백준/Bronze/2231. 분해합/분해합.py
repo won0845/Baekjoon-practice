@@ -1,13 +1,12 @@
 n = int(input())
-minv = 0  
 
-start = max(n - 9 * len(str(n)), 0)
-
+start = max(n - (len(str(n)) * 9), 0)
+minV = 0
 for i in range(start, n):
     temp = list(map(int, str(i)))
     hap = i + sum(temp)
-    if hap == n:
-        minv = i  
+    if n == hap:
+        minV = i
         break
-        
-print(minv)
+
+print(minV)

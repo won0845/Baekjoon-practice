@@ -14,4 +14,4 @@ for k in range(0, len(alpha)):
 
 for i in range(len(s)):
     sum += a[s[i]]*(31**i)
-print(sum)
+print(sum%1234567891)

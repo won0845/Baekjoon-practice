@@ -5,17 +5,22 @@ input = sys.stdin.readline
 n = input().rstrip()
 while n != ".":
     stk = []
-    check = True
+    balanced = True
     for i in n:
         if i == "(" or i == "[":
             stk.append(i)
-        elif i == ")" or i == "]":
-            if not stk or (i == ")" and stk[-1] != "(") or (i == "]" and stk[-1] != "["):
-                check = False
+        elif i == ")":
+            if not stk or stk[-1] != "(":
+                balanced = False
+                break
+            stk.pop()
+        elif i == "]":
+            if not stk or stk[-1] != "[":
+                balanced = False
                 break
             stk.pop()
 
-    if stk or not check:
+    if stk or not balanced:
         print("no")
     else:
         print("yes")

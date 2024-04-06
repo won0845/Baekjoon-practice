@@ -29,5 +29,4 @@ for i in range(n):
         else:
             continue
 stk1.extend((reversed(stk2)))
-for i in stk1:
-    print(i, end="")
+print("".join(stk1))

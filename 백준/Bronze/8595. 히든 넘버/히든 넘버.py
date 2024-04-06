@@ -1,4 +1,3 @@
 import re
-n = int(input())
-number = "1234567890"
+n = input()
 print(sum(map(int, re.findall("\d+", input().rstrip()))))

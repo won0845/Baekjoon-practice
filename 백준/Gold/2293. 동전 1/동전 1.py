@@ -8,6 +8,7 @@ dp = [1] + [0 for i in range(b)]
 
 for _ in range(a):
     coins.append(int(input()))
+coins.sort()
 
 for i in coins:
     for j in range(i,  b+1):

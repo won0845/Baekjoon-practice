@@ -8,7 +8,7 @@ for _ in range(n):
     H, W, N = map(int, input().split())
     ho = N % H
     floor = N // H + 1
-    if ho == 0:  # N이 H의 배수일 때
+    if ho == 0:
         ho = H
         floor -= 1
     if floor < 10:

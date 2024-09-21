@@ -8,8 +8,9 @@ while n > 0:
     n //= 2
     binary.append(mob)
 
+binary.reverse()
 
 for i in range(len(binary)):
-      answer += binary[i] * (2 ** (len(binary) - 1 - i))
+     answer += binary[i] * (2 ** i)
 
 print(answer)

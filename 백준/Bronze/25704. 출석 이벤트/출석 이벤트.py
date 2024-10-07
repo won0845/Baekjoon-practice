@@ -1,15 +1,18 @@
-N = int(input())
+stamp = int(input())
 price = int(input())
-sale = [0]	# N이 5 미만일 때 처리하기 위한 0
 
-if N >= 5 :
-    sale.append(500)	# 500원 할인
-if N >= 10 :
-    sale.append(price // 10)	# 10% 할인
-if N >= 15 :
-    sale.append(2000)	# 2000원 할인
-if N >= 20 :
-    sale.append(price // 4)	# 25% 할인
+discount = 0 
 
-result = price - max(sale)
-print(max(0, result))
+if stamp >= 20:
+    discount = max(price // 4, 2000)
+elif stamp >= 15:
+    discount = max(2000, price // 10)
+elif stamp >= 10:
+    discount = max(price // 10, 500)
+elif stamp >= 5:
+    discount = 500
+else:
+    discount = 0
+
+finals = max(0, price - discount)
+print(finals)

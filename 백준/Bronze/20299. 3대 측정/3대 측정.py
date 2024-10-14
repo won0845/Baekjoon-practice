@@ -10,8 +10,7 @@ for i in range(n):
     if a < l or b< l or c<l:
         continue
     if a+b+c >= k:
-        lst.append([a,b,c])
+        lst.extend([a,b,c])
 
-print(len(lst))
-for i in lst:
-    print(*i,end=" ")
+print(len(lst)//3)
+print(*lst)

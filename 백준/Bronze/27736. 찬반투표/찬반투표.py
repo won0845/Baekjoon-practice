@@ -6,11 +6,11 @@ chan = lst.count(1)
 ban = lst.count(-1)
 gi = jun-chan-ban
 
-if jun // 2 < gi:
+if jun / 2 <= gi:
     print("INVALID")
 elif chan > ban:
     print("APPROVED")
-else:
+elif chan <=ban:
     print("REJECTED")
 
 

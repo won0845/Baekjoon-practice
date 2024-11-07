@@ -1,2 +1,1 @@
-n = input()
-print(n.count("DKSH"))
+print(input().count("DKSH"))

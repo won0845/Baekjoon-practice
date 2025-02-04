@@ -1,16 +1,14 @@
-import sys
+import bisect
 
-input = sys.stdin.readline
-
-N = int(input())
+n = int(input())
 arr = list(map(int, input().split()))
+sub = []
 
-# dp 배열 초기화
-dp = [1] * N
-
-for i in range(1, N):
-    for j in range(i):
-        if arr[i] > arr[j]:
-            dp[i] = max(dp[i], dp[j] + 1)
-
-print(max(dp))
+for i in arr:
+    pos = bisect.bisect_left(sub, i)
+    if pos == len(sub):
+        sub.append(i)
+    else:
+        sub[pos] = i
+        
+print(len(sub))
